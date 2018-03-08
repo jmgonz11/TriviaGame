@@ -12,26 +12,6 @@ $(document).ready(function(){
     var ticker;
    
 
-// Reset Results Function 
-function resetResults() {
-    correct = 0;
-    incorrect = 0;
-    unanswered = 0;
-}
-
-// Start Game Function
-function startGame() {
-    $(".start").hide();
-    startTime();
-    displayQuestion();
-}
-
-
-// Start Game On Click
-$(".start").on("click", function() {
-startGame();
-});
-
 // Identify Arrays for the jokes in questions and answers. 
 
 
@@ -84,6 +64,8 @@ startGame();
           "The moon doesn't have restaurants!",
            "Switch to a burrito"];
 
+});
+
         
 // Show & Hide Functions
     function showHolders() {
@@ -119,10 +101,10 @@ startGame();
         $("#choice-holder-4").html(fourthChoice[count]);
     
     
-    $("#choice-holder-1").on("click", checkAnswer) 
-    $("#choice-holder-2").on("click", checkAnswer)
-    $("#choice-holder-3").on("click", checkAnswer)
-    $("#choice-holder-4").on("click", checkAnswer)
+    $("#choice-holder-1").on("click", checkAnswer); 
+    $("#choice-holder-2").on("click", checkAnswer);
+    $("#choice-holder-3").on("click", checkAnswer);
+    $("#choice-holder-4").on("click", checkAnswer);
 
 // Check Answer Function
     function checkAnswer() {
@@ -211,16 +193,35 @@ startGame();
 
     resetTime();
 
+ // need a function in order to see the results of the user
 
- // Show Results Function   
-    function showResults() {
-        $("#correct-holder").show();
-        $("#correct-holder").html("Correct: " + correct);
-        $("#incorrect-holder").show();
-        $("#incorrect-holder").html("Incorrect: " + incorrect);
-        $("#unanswered-holder").show();
-        $("#unanswered-holder").html("Unanswered: " + unanswered);
-        $("#restart-holder").show();
-        $("#restart-holder").html("Click Start above to play again!");
-    }
+ function showResults() {
+    $("#correct-holder").show();
+    $("#correct-holder").html("Correct: " + correct);
+    $("#incorrect-holder").show();
+    $("#incorrect-holder").html("Incorrect: " + incorrect);
+    $("#unanswered-holder").show();
+    $("#unanswered-holder").html("Unanswered: " + unanswered);
+    $("#restart-holder").show();
+    $("#restart-holder").html("Click Start above to play again!");
+}
+
+// reset the user results here 
+function resetResults() {
+    correct = 0;
+    incorrect = 0;
+    unanswered = 0;
+}
+
+
+$(".start").click(function() {
+    startGame();
+
+// start button function 
+function startGame() {
+    $(".start").hide();
+    startTime();
+    displayQuestion();
+    console.log (test);
+};
 
