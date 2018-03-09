@@ -121,7 +121,6 @@ $(document).ready(function(){
             isSelected = true;
             $("#answer-holder").show();
             $("#answer-holder").html("Right! The answer is: " + answer[count]);
-            displayImage();
             correct++;
             count++;
         }
@@ -129,8 +128,7 @@ $(document).ready(function(){
             stopTime();
             isSelected = true;
             $("#answer-holder").show();
-            $("#answer-holder").html("Wrong! The answer is: " + answer[count]);
-            displayImage();
+            $("#answer-holder").html("Wrong! The answer is: " + answer[count])
             incorrect++;
             count++;
         } 
@@ -170,8 +168,7 @@ $(document).ready(function(){
                 hideHolders();
                 stopTime();
                 $("#answer-holder").show();
-                $("#answer-holder").html("You are too slow! (like a turtle) the answer is:" + answer[count]);
-                displayImage();
+                $("#answer-holder").html("You are too slow! (like a turtle) the answer is:" + answer[count])
                 unanswered++;
                 count++;
                 checkGameEnd();
