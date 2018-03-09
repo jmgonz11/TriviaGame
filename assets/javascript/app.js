@@ -23,6 +23,7 @@ $(document).ready(function(){
     "What do you call a snowman with a six pack?",
     "What was wrong with the restaurant on the moon?",
     "What should you do if there is a taco emergency?"];
+     
     var answer = ["10 tickles!",
      "One will see you later and the other one will see you in a while!",
       "He was a little Chili",
@@ -31,6 +32,7 @@ $(document).ready(function(){
          "The abdomimal snowman!",
           "It had great food, but there was no atmosphere.",
            "Call 9 Juan Juan!",];
+
     var firstChoice = ["8",
      "One will see you later and the other one will see you in a while!",
       "Why do peppers need jackets?",
@@ -39,6 +41,7 @@ $(document).ready(function(){
          "Muscular",
           "It had great food, but there was no atmosphere.",
            "Eat something else!"];
+
     var secondChoice = ["12",
      "One is mean and one is not mean",
       "He was trying to be fashionable",
@@ -47,6 +50,7 @@ $(document).ready(function(){
          "The abdomimal snowman!",
           "It was dark",
            "Panic"];
+
     var thirdChoice = ["10 tickles!",
      "The colors",
       "He was a little Chili",
@@ -55,6 +59,7 @@ $(document).ready(function(){
          "In Shape",
           "The Food was horrible",
            "Call 9 Juan Juan!"];
+
     var fourthChoice = ["4",
      "One can hold their breath longer",
       "I hate peppers!",
@@ -64,7 +69,7 @@ $(document).ready(function(){
           "The moon doesn't have restaurants!",
            "Switch to a burrito"];
 
-});
+
 
         
 // Show & Hide Functions
@@ -99,7 +104,7 @@ $(document).ready(function(){
         $("#choice-holder-2").html(secondChoice[count]);
         $("#choice-holder-3").html(thirdChoice[count]);
         $("#choice-holder-4").html(fourthChoice[count]);
-    
+    }
     
     $("#choice-holder-1").on("click", checkAnswer); 
     $("#choice-holder-2").on("click", checkAnswer);
@@ -213,15 +218,18 @@ function resetResults() {
     unanswered = 0;
 }
 
-
-$(".start").click(function() {
+$(".start").on("click", function() {
+    console.log("hey");
     startGame();
+
+})
 
 // start button function 
 function startGame() {
-    $(".start").hide();
+    $(".start").hide(); 
     startTime();
     displayQuestion();
-    console.log (test);
-};
 
+}
+
+});
