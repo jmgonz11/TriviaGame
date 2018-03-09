@@ -131,9 +131,9 @@ $(document).ready(function(){
             $("#answer-holder").html("Wrong! The answer is: " + answer[count])
             incorrect++;
             count++;
-        } 
+            checkGameEnd();  
 
-        checkGameEnd();  
+        }
     }
 
 // Make the end of game function 
