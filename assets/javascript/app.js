@@ -12,7 +12,66 @@ $(document).ready(function(){
     var ticker;
    
 
+    // reset the user results here 
+function resetResults() {
+    correct = 0;
+    incorrect = 0;
+    unanswered = 0;
+    console.log("correct");
+}
+
+$(".start").on("click", function() {
+    console.log("hey");
+    startGame();
+
+})
+
+// start button function 
+function startGame() {
+    $(".start").hide(); 
+    startTime();
+    displayQuestion();
+
+}
+
 // Identify Arrays for the jokes in questions and answers. 
+
+// display the time and make it count down 
+
+function displayTime() {
+    time--;
+    $("#time-holder").html("Time remaining: " + time);
+  
+        if(time <= 0) {
+            hideHolders();
+            stopTime();
+            $("#answer-holder").show();
+            $("#answer-holder").html("You are too slow! (like a turtle) the answer is:" + answer[count])
+            unanswered++;
+            count++;
+            checkGameEnd();
+        }
+}
+
+//start the count down 
+
+function startTime() {
+    clearInterval(ticker);
+    ticker = setInterval(displayTime, 1000);
+}
+
+// keep track of the count down 
+
+function stopTime() {
+    clearInterval(ticker);
+    resetTime();
+    if(count < question.length - 1) {
+        setTimeout(startTime, 2000);
+        setTimeout(displayQuestion, 3000);
+    }
+}
+
+resetTime();
 
 
     var question = ["How many Tickles does it take to make an octopus laugh?",
@@ -72,16 +131,18 @@ $(document).ready(function(){
 
 
         
-// Show & Hide Functions
+// Show & Hide Functions for each of the questions and their 4 answers. 
+
+
     function showHolders() {
-        $("#question-holder").show();
+        $("#questions").show();
         $("#choice-holder-1").show();
         $("#choice-holder-2").show();
         $("#choice-holder-3").show();
         $("#choice-holder-4").show();
     }
     function hideHolders() {
-        $("#question-holder").hide();
+        $("#questions").hide();
         $("#choice-holder-1").hide();
         $("#choice-holder-2").hide();
         $("#choice-holder-3").hide();
@@ -93,25 +154,37 @@ $(document).ready(function(){
         $("#unanswered-holder").hide();
         $("#restart-holder").hide();
     }
+
+
     function displayQuestion () {
         hideResults();
         $("#answer-holder").hide();
         $("#image-holder").hide();
         $("#time-holder").show();
+
+
         showHolders();
-        $("#question-holder").html(question[count]);
+
+
+        $("#questions").html(question[count]);
         $("#choice-holder-1").html(firstChoice[count]);
         $("#choice-holder-2").html(secondChoice[count]);
         $("#choice-holder-3").html(thirdChoice[count]);
         $("#choice-holder-4").html(fourthChoice[count]);
     }
+
+
+
+
+    // for each answer and checking, on the click on the right answer, make sure to show the correct one. 
     
     $("#choice-holder-1").on("click", checkAnswer); 
     $("#choice-holder-2").on("click", checkAnswer);
     $("#choice-holder-3").on("click", checkAnswer);
     $("#choice-holder-4").on("click", checkAnswer);
 
-// Check Answer Function
+// Check Answer Function- have the user input be checked against the array for the right answers. 
+
     function checkAnswer() {
 
         hideHolders();
@@ -155,47 +228,10 @@ $(document).ready(function(){
     // make the questions reset 
 
     function resetTime() {
-        time = 25;
+        time = 30;
     }
 
-// display the time and make it count down 
-
-    function displayTime() {
-        time--;
-        $("#time-holder").html("Time remaining: " + time);
-      
-            if(time <= 0) {
-                hideHolders();
-                stopTime();
-                $("#answer-holder").show();
-                $("#answer-holder").html("You are too slow! (like a turtle) the answer is:" + answer[count])
-                unanswered++;
-                count++;
-                checkGameEnd();
-            }
-    }
-
-    //start the count down 
-
-    function startTime() {
-        clearInterval(ticker);
-        ticker = setInterval(displayTime, 1000);
-    }
-
-    // keep track of the count down 
-
-    function stopTime() {
-        clearInterval(ticker);
-        resetTime();
-        if(count < question.length - 1) {
-            setTimeout(startTime, 2000);
-            setTimeout(displayQuestion, 3000);
-        }
-    }
-
-    resetTime();
-
- // need a function in order to see the results of the user
+// need a function in order to see the results of the user
 
  function showResults() {
     $("#correct-holder").show();
@@ -205,28 +241,10 @@ $(document).ready(function(){
     $("#unanswered-holder").show();
     $("#unanswered-holder").html("Unanswered: " + unanswered);
     $("#restart-holder").show();
-    $("#restart-holder").html("Click Start above to play again!");
-}
-
-// reset the user results here 
-function resetResults() {
-    correct = 0;
-    incorrect = 0;
-    unanswered = 0;
-}
-
-$(".start").on("click", function() {
-    console.log("hey");
-    startGame();
-
-})
-
-// start button function 
-function startGame() {
-    $(".start").hide(); 
-    startTime();
-    displayQuestion();
-
+    $("#restart-holder").html("If you want to play again, press the start button!");
 }
 
 });
+
+
+
