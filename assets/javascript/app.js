@@ -31,6 +31,7 @@ function startGame() {
     $(".start").hide(); 
     startTime();
     displayQuestion();
+    console.log(startGame);
 
 }
 
@@ -40,13 +41,13 @@ function startGame() {
 
 function displayTime() {
     time--;
-    $("#time-holder").html("Time remaining: " + time);
+    $("#time-holder").html("Seconds until you are a loser: " + time);
   
         if(time <= 0) {
             hideHolders();
             stopTime();
-            $("#answer-holder").show();
-            $("#answer-holder").html("You are too slow! (like a turtle) the answer is:" + answer[count])
+            $("#answers").show();
+            $("#answers").html("You are too slow! (like a turtle) the answer is:" + answer[count])
             unanswered++;
             count++;
             checkGameEnd();
@@ -57,7 +58,7 @@ function displayTime() {
 
 function startTime() {
     clearInterval(ticker);
-    ticker = setInterval(displayTime, 1000);
+    ticker = setInterval(displayTime, 3000);
 }
 
 // keep track of the count down 
@@ -66,8 +67,8 @@ function stopTime() {
     clearInterval(ticker);
     resetTime();
     if(count < question.length - 1) {
-        setTimeout(startTime, 2000);
-        setTimeout(displayQuestion, 3000);
+        setTimeout(startTime, 4000);
+        setTimeout(displayQuestion, 4000);
     }
 }
 
@@ -136,17 +137,17 @@ resetTime();
 
     function showHolders() {
         $("#questions").show();
-        $("#choice-holder-1").show();
-        $("#choice-holder-2").show();
-        $("#choice-holder-3").show();
-        $("#choice-holder-4").show();
+        $("#userinput1").show();
+        $("#userinput2").show();
+        $("#userinput3").show();
+        $("#userinput4").show();
     }
     function hideHolders() {
         $("#questions").hide();
-        $("#choice-holder-1").hide();
-        $("#choice-holder-2").hide();
-        $("#choice-holder-3").hide();
-        $("#choice-holder-4").hide();
+        $("#userinput1").hide();
+        $("#userinput2").hide();
+        $("#userinput3").hide();
+        $("#userinput4").hide();
     }
     function hideResults() {
         $("#correct-holder").hide();
@@ -158,8 +159,7 @@ resetTime();
 
     function displayQuestion () {
         hideResults();
-        $("#answer-holder").hide();
-        $("#image-holder").hide();
+        $("#answers").hide();
         $("#time-holder").show();
 
 
@@ -167,10 +167,10 @@ resetTime();
 
 
         $("#questions").html(question[count]);
-        $("#choice-holder-1").html(firstChoice[count]);
-        $("#choice-holder-2").html(secondChoice[count]);
-        $("#choice-holder-3").html(thirdChoice[count]);
-        $("#choice-holder-4").html(fourthChoice[count]);
+        $("#userinput1").html(firstChoice[count]);
+        $("#userinput2").html(secondChoice[count]);
+        $("#userinput3").html(thirdChoice[count]);
+        $("#userinput4").html(fourthChoice[count]);
     }
 
 
@@ -178,10 +178,10 @@ resetTime();
 
     // for each answer and checking, on the click on the right answer, make sure to show the correct one. 
     
-    $("#choice-holder-1").on("click", checkAnswer); 
-    $("#choice-holder-2").on("click", checkAnswer);
-    $("#choice-holder-3").on("click", checkAnswer);
-    $("#choice-holder-4").on("click", checkAnswer);
+    $("#userinput1").on("click", checkAnswer); 
+    $("#userinput2").on("click", checkAnswer);
+    $("#userinput3").on("click", checkAnswer);
+    $("#userinput4").on("click", checkAnswer);
 
 // Check Answer Function- have the user input be checked against the array for the right answers. 
 
@@ -192,16 +192,16 @@ resetTime();
         if($(this).text() === answer[count]) {
             stopTime();
             isSelected = true;
-            $("#answer-holder").show();
-            $("#answer-holder").html("Right! The answer is: " + answer[count]);
+            $("#answers").show();
+            $("#answers").html("Correct!! The Answer is: " + answer[count]);
             correct++;
             count++;
         }
         else {
             stopTime();
             isSelected = true;
-            $("#answer-holder").show();
-            $("#answer-holder").html("Wrong! The answer is: " + answer[count])
+            $("#answers").show();
+            $("#answers").html("Wrong! The answer is: " + answer[count])
             incorrect++;
             count++;
             checkGameEnd();  
